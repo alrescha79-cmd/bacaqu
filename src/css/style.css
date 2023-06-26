@@ -1,0 +1,538 @@
+/* setup awal, padding 0 */
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background: #f5f5f5;
+  padding: 0;
+  margin: 0;
+
+}
+
+#navbar {
+    background: #008080;
+    color: white;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+#navbar h2 span {
+    color: #8db69f; ;
+}
+
+#navbar .nav-links {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50%;
+    list-style: none;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: white;
+    transition: all 0.2s ease-in-out;
+}
+
+.nav-links li a:hover {
+    border-bottom: 2px solid white;
+    transition: all 0.2s ease-in-out;
+}
+
+.nav-links li input {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #277e4d;
+    margin: 5px 0;
+}
+
+.nav-links li input:focus {
+    outline: none;
+    border: 2px solid #277e4d;
+}
+
+#surat {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 20px;
+    background: #008080;
+}
+
+.surat-surat {
+    display: none;
+    position: fixed;
+    top: 40px;
+    left: 2%;
+    width: 90%;
+    z-index: 2;
+    
+}
+
+#surat h1 {
+    color: white;
+}
+
+.surat-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+#list-surat {
+    background: #ffffff;
+    border-radius: 10px;
+    width: 300px;
+    height: 100px;
+    position: relative; 
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    /* opacity: 1; */
+}
+
+.list-surat:hover {
+    background: white;
+    transform: scale(1.02);
+}
+
+.list-surat-detail:hover {
+    background: white;
+    transform: scale(1.02);
+}
+
+.surat-list:hover> :not(:hover) {
+    opacity: 0.6;
+    filter: blur(.3px);
+}
+
+.surat-tidak-ditemukan {
+    color: white;
+    background: red;
+    padding: 4px 16px; 
+    border-radius: 5px;
+}
+
+.surat-nomor {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 25px;
+    left: 8px;
+    border: 2px solid rgb(14, 117, 5);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.surat-arab {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 24px;
+}
+
+.surat-latin {
+    position: absolute;
+    top: 14px;
+    left: 60px;
+    font-size: 18px;
+    color: #00612a;
+}
+
+.surat-arti {
+    position: absolute;
+    bottom: 37px;
+    left: 60px;
+    font-size: 12px;
+    padding: 2px 4px;
+    border-radius: 5px;
+    background: #209b55bd;
+    color: white;
+}
+
+.surat-ayat {
+    position: absolute;
+    bottom: 10px;
+    right: 25px;
+    font-size: 12px;
+    padding: 2px 4px;
+    border-radius: 4px;
+    border: 1px solid #109a4c;
+}
+
+.surat-tempat-turun {
+    position: absolute;
+    bottom: 8px;
+    left: 60px;
+    font-size: 12px;
+    background: #d2f5dc;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+.surat-lain {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1rem 0 2rem 0;
+}
+
+.surat-lain button {
+    border: none;
+    background: #277e4d;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.surat-lain button:hover {
+    background: #176036;
+    transform: scale(1.02);
+}
+
+
+#tunggu {
+    width: 100%;
+    height: 80vh;
+    text-align: center;
+    padding-top: 30vh;
+    font-size: 40px;
+    font-weight: 700;
+
+}
+
+.tunggu.eror {
+    height: 80vh;
+    text-align: center;
+    padding-top: 30vh;
+    font-weight: 700;
+    color: rgb(160, 3, 3);
+}
+
+#tunggu .aktif {
+    display: none;
+}
+
+footer {
+    background: #697970;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+footer a {
+    text-decoration: none;
+    color: tomato;
+    font-size: 15px;
+    transition: all 0.2s ease-in-out;
+}
+
+footer a:hover {
+    color: #004927;
+}
+
+
+
+
+/* halaman detail surat */
+.info-surat {
+    margin-left: 4rem;
+    display: flex;
+    justify-content: baseline;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+.info-surat h1 {
+    text-align: left;
+    border: 2px solid #277e4d;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.info-surat h2 {
+    text-align: left;
+    margin-left: 10px;
+    color: #277e4d;
+    margin-top: 12px;
+}
+
+.info-surat h2 span {
+    font-size: 12px;
+    font-weight: normal;
+    color: black;
+}
+
+
+.surat-isi {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.isi-surat {
+    border-radius: 20px 10px 10px 10px;
+    background: #effff4b5;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    border: 1px solid #7ead8e;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.ayat-surat {
+    width: 15%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #277e4d;
+    color: white;
+    border-radius: 20px 0 20px 0;
+}
+
+
+
+.bacaan-surat {
+    transform: translateX(20%);
+    padding: 10px 10px 10px 0;
+    margin-bottom: 10px;
+    border: 1px solid #277e4d1f;
+    border-radius: 8px;
+    color: #176036;
+    text-align: end;
+    line-height: 40px;
+    letter-spacing: 0.5px;
+    word-spacing: 2px;
+    width: 80%;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.bacaan-surat-latin {
+    color: #004f8b;
+    font-size: 12px;
+    width: 90%;
+    margin: 2px 0 4px 10px;
+    padding: 2px 4px;
+    border-radius: 5px;
+}
+
+.terjemahan-surat {
+    color: #004612;
+    font-size: 14px;
+    width: 90%;
+    margin: 2px 0 6px 10px;
+    padding: 2px 4px;
+    border-radius: 5px;
+}
+.nav-mobile {
+    display: none;
+}
+
+
+/* halaman info */
+.content{
+    background-color: #baeeee;
+    padding: 8px;
+    margin: 4px;
+}
+
+.about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 4px;
+}
+.about h1 {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #004612;
+}
+.about h3{
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #004612;
+    text-align: justify;
+}
+.about h4 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #004612;
+}
+p {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #004612;
+    text-align: justify;
+}
+
+ul li {
+    list-style: none;
+    margin-bottom: 10px;
+    color: #004612;
+    text-align: justify;
+}
+h3 a {
+    text-decoration: none;
+    color: #004612;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    transition: all 0.2s ease-in-out;
+}
+h3 a:hover{
+    color: #277e4d;
+}
+
+/* mobile view */
+
+@media screen and (max-width: 500px) {
+    #navbar {
+        justify-content: center;
+        gap: 10px;
+    }
+  
+    .nav-links li input {
+        width: 100%;
+    }
+    #navbar ul li:nth-child(2) {
+        display: none;
+    }
+    #navbar ul li:nth-child(3) {
+        display: none;
+    }
+    #tunggu {
+        font-size: 30px;
+    }
+
+
+    /* halaman surat */
+    .info-surat {
+        margin-left: 1rem;
+        width: 80%;
+    }
+    .info-surat h1 {
+        margin-left: 4px;
+        width: 50px;
+        height: 40px;
+        font-size: 18px;
+        margin-top: 14px;
+    }
+    .info-surat h2 {
+        margin-left: 28px;
+    }
+
+    .nav-mobile {
+        display: block;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        background-color: #0a6262;
+    }
+
+    .nav-mobile ul {
+        display: flex;
+        width: 100%;
+        height: 48px;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .nav-mobile ul li {
+        list-style: none;
+        font-size: 18px;
+        font-weight: 600;
+        color: white;
+        width: 100%;
+        height: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nav-mobile .list-surat-mobile:hover img {
+        width: 20px;
+        height: 20px;
+        transform: translateY(-46%);
+        background: #0a6262;
+        border-radius: 40%;
+        padding: 8px;
+        transition: all 0.2s ease-in-out;
+      }
+      
+      .nav-mobile .list-surat-mobile:hover::after {
+        content: "Surat";
+        position: absolute;
+        bottom: 8px;
+        transition: all 0.2s ease-in-out;
+      }
+
+    .nav-mobile .cari-surat-mobile:hover img {
+        width: 20px;
+        height: 20px;
+        transform: translateY(-46%);
+        background: #0a6262;
+        border-radius: 40%;
+        padding: 8px; 
+        transition: all 0.2s ease-in-out;
+      }
+      
+      .nav-mobile .cari-surat-mobile:hover::after {
+        content: "Cari";
+        position: absolute;
+        bottom: 8px;
+        transition: all 0.2s ease-in-out;
+      }
+      
+    .nav-mobile .info-surat-mobile:hover img {
+        width: 20px;
+        height: 20px;
+        transform: translateY(-46%);
+        background: #0a6262;
+        border-radius: 40%;
+        padding: 8px;
+        transition: all 0.2s ease-in-out;
+      }
+      
+      .nav-mobile .info-surat-mobile:hover::after {
+        content: "Info";
+        position: absolute;
+        bottom: 8px;
+        transition: all 0.2s ease-in-out;
+      }
+      
+    
+  
+}
